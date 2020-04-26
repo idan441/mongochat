@@ -189,7 +189,6 @@ In Linux there is a methodology called "everything is a file" , meaning that any
 ## How to design a socket connection between a client and a server? ( The programing part. ) 
 
 ### A connection socket diagram - 
-*Picture scheme should be here*
 The following scheme shows a basic socket connection between a client and a server. This is a general idea, and may vary a little bit between different progamming languages. 
 
 From the server's side - 
@@ -221,6 +220,9 @@ When the client wants to end the connection -
 
 **An important note -**
 Which computer is the server and which is the client is only a relevant distinction during the initial configuration. After the connection is established, communication is exactly the same in both directions.
+
+![This is a graph showing how socket connection is created, used and closed in a cilent-server architecture. The graph is described in the above explanations. ](./socket-connection-scheme.png)
+
 
 
 ### Using netcat to open a port on the machine - ( This will create a TCP socket using netcat Linux command. ) 
@@ -256,7 +258,7 @@ idan@idan-X540LA:/etc$ netcat -l 4000
 this message is sent from the client #I sent this message from the client, and it appeared on the servers terminal. 
 this message is sent from the server #I sent this message from the server, and it appeared here on the client's terminal. 
 ```
-**image - making netcat socket.png**
+![image - an example for a TCP socket created by netcat command. This is a picture depicting the text above. ](./making-netcat-socket.png)
 Example for a netcat socket connecton which I have made on a machine. Here I choose to connect to localhost, so the computer is the client connecting to itself as a server. On each terminal process I sent a message which apperead on the other terminal. ** 
 
 #### Using netcat to transfer a file - 
@@ -282,7 +284,7 @@ hello world  # -> This is my output, which will eventually will create a text fi
 
 
 ### Common objects used for making socket conneciton in different programming languages - 
-These are exmaples of objects which can be found in many programming languages. They are used to store properties about hte socket and to configure it. ( This example is reffering to C programming language. ) 
+These are exmaples of objects which can be found in many programming languages. They are used to store properties about the socket and to configure it. ( This example is reffering to C programming language. ) 
 
 These can be seen in many ways - 
 * Socket - this object is the one actually doing the connection. 
