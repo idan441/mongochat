@@ -421,7 +421,9 @@ For example - you can query what should be used for internet surfing **service**
 
 **To sum up -** some programming languages can user servent() functions nad object. These are used to query the ***services file*** and show the results of the desired service definitions on network and application levels. 
 
-Useful refference - 
+
+
+## Useful refference - 
 * General infromation about sockets (in C language) - 
 https://www.tutorialspoint.com/unix_sockets/index.htm
 * netcat command examples and explanations - 
