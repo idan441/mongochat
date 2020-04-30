@@ -3,25 +3,27 @@ import socket #This will import socket objects class which can create, read, wri
 
 HOST =''
 PORT = 15000
+RECV_BUFFER = 4096 
+
+
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-	# This statement will create a new socket using the socket objet. 
-	# AF_INET = IPv4 protocol for connections (IPv6 will not be supported iwth this attribute) 
-	# SOCK_STREAM means the socket will use TCP protocol. 
+	#AF_INET = IPv4, SOCK_STREAM = TCP protocol. 
 
-
-	#Binding the socket - that means to set the socket a host destination and a port at this destination. 
-	# Note that a server does not have a host because it is the host itself, but in python socket you still need to send an empty string as a "host" argument. 
 	sock.bind((HOST, PORT)) 
-
-	#Making the socket to listen - means making it accept connections from other computers trying to connect to it. 
-	sock.listen(1) #listen() will make the system to accept connections to the socket. THe numeric argument specifies the amount of connections waiting to be accepted by the accept() function. 
-
-	### From this moment the socket is active on the local machine, waiting for other computer to connect to it. ### 
+	sock.listen(3) #listen() will make the system to accept connections to the socket. The numeric argument specifies the amount of connections allowed at the waiting queue until being accepted by the accept() function. 
+	print("running server in host {} port {}".format(HOST, PORT))
 
 
 	conn, addr = sock.accept() # accept() is a functions which accepts a connectino from a client. It returns another socker object and the IP address of the other side. conn = a socket with an open connections with the client, addr = the IP (IPv4) address of the client. 
-	
+	print(conn)
+	print(addr)
+
+	print('connect create from IP address: ', addr) #Prints the IPv4 address of the client. 
+
+	conn2, addr = sock.accept() # accept() is a functions which accepts a connectino from a client. It returns another socker object and the IP address of the other side. conn = a socket with an open connections with the client, addr = the IP (IPv4) address of the client. 
+	print(conn)
+	print(addr)
 
 	print('connect create from IP address: ', addr) #Prints the IPv4 address of the client. 
 
@@ -30,13 +32,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 		#Again, when using "with" statement then on any case, no matter what, at the stop of execution of this program - the conn object will be destroyed. 
 		while True: #As long as the connection is active with the client. 
 			data = conn.recv(1024)
+			data2 = conn2.recv(1024)
 			print(data)
-			#recv() function tells the socket object (=conn) to receive data. The number is the maximum size of data to be recieved at once - 1024 bytes. It is recommended not to use a big number due to network realities... ( 4096 is also fine according to the documentary. ) 
+			print(data)
 
-			#If an empty message was sent - then close the connection. 
-			if not data: 
-				print("data recieved is empty - exiting program")
-				break
+			# if not data: 
+			# 	print("data recieved is empty - exiting program")
+			# 	break
 			
 
 			conn.sendall(b'hello from server') 
